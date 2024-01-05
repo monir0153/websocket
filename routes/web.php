@@ -28,3 +28,6 @@ Route::get('event', function () {
     OrderPlaceEvent::dispatch($order);
     return "order placed successfully";
 });
+
+
+Route::view('latest-order', 'order');

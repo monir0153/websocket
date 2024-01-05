@@ -14,13 +14,13 @@ use Illuminate\Queue\SerializesModels;
 class OrderPlaceEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $order;
     /**
      * Create a new event instance.
      */
-    public function __construct(public Order $order)
+    public function __construct($order)
     {
-        //
+        $this->order = $order;
     }
 
     /**
