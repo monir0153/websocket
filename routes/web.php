@@ -1,8 +1,10 @@
 <?php
 
+use App\Events\OrderPlaceEvent;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Event;
 use App\Events\SendMailEvent;
+use App\Models\Order;
 use App\Models\User;
 
 /*
@@ -22,7 +24,7 @@ Route::get('/', function () {
 
 // Event listener routes
 Route::get('event', function () {
-    $userId = User::latest()->first()->id;
-    Event::dispatch(new SendMailEvent($userId));
-    return 'user subscribe';
+    $order = Order::create();
+    OrderPlaceEvent::dispatch($order);
+    return "order placed successfully";
 });
